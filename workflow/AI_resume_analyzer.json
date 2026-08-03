@@ -1,0 +1,136 @@
+{
+  "name": "AI resume analyser",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "AI Resume Analyzer",
+        "formDescription": "Upload your resume and select your target job role to receive an AI-powered resume analysis.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Full name",
+              "placeholder": "John Doe",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Target Job ROle",
+              "placeholder": "Data Scientist",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Resume",
+              "fieldType": "file",
+              "multipleFiles": false,
+              "acceptFileTypes": ".pdf",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {
+          "ignoreBots": true,
+          "useWorkflowTimezone": true
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.6,
+      "position": [
+        0,
+        0
+      ],
+      "id": "52d3ba63-939e-48c3-a84c-18840d6f4352",
+      "name": "On form submission",
+      "webhookId": "0e1c6090-da79-41ae-87df-4720a0f54103"
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "binaryPropertyName": "Resume",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "db749bcb-bc7b-447c-acc3-04a0b2e86b52",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "models/gemini-3-flash-preview",
+          "cachedResultName": "models/gemini-3-flash-preview",
+          "cachedResultUrl": ""
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Target Job Role:{{ $('On form submission').item.json[\"Target Job ROle\"] }}\n\n\nResume:\n\n{{$json.text}}"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "builtInTools": {},
+        "options": {
+          "systemMessage": "You are an expert ATS Resume Reviewer and Career Coach.  Your task is to evaluate resumes for Applicant Tracking Systems (ATS).  Always return valid JSON matching this schema:  {   \"professional_summary\": \"string\",   \"ats_score\": 0,   \"skills_detected\": [],   \"strengths\": [],   \"weaknesses\": [],   \"missing_skills\": [],   \"resume_improvement_suggestions\": [] }  Rules: - Return only JSON. - No markdown. - ATS score must be between 0 and 100."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1.2,
+      "position": [
+        416,
+        0
+      ],
+      "id": "3cfb856c-99c0-4a7e-ad22-db2fa5438ab2",
+      "name": "Message a model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "wUtxsLVA6hLqfJzJ",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "9ecdd32b-2e6c-4388-bbeb-198e05f84220",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "2ddca90e5f1237bac2d7bdb6cc672beabbea4349f12469705dc7d0d079dccb19"
+  },
+  "nodeGroups": [],
+  "id": "017y67sAt2ngKi7r",
+  "tags": []
+}
