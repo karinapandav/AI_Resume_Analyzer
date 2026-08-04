@@ -1,96 +1,187 @@
-# AI Resume Analyzer
+# 🤖 AI Resume Analyzer
 
-An AI-powered Resume Analyzer built using **React**, **n8n**, and **Google Gemini**.
+An AI-powered Resume Analyzer built with **React**, **n8n**, and **Google Gemini** that helps job seekers evaluate their resumes against a target job role.
 
-Users can upload their resume (PDF), specify a target job role, and receive an AI-generated ATS-style analysis with actionable feedback.
+Users upload a PDF resume, specify their desired role, and receive an ATS-style analysis including strengths, weaknesses, missing skills, and actionable improvement suggestions.
 
----
-
-## 🚀 Features
-
-- 📄 Upload resume in PDF format
-- 🎯 Enter target job role
-- 🤖 AI-powered resume analysis using Google Gemini
-- 📊 ATS Score generation
-- 💪 Strengths & Weaknesses
-- 🛠️ Missing Skills detection
-- 💡 Resume improvement suggestions
+> 🚧 This project is currently under active development.
 
 ---
 
-## 🛠️ Tech Stack
+## ✨ Features
 
-### Frontend
+### Current
+- Upload resume in PDF format
+- Enter target job role
+- Extract text from PDF using n8n
+- AI-powered resume analysis using Google Gemini
+- Structured JSON output
+- Modern React frontend
+
+### Planned
+- ATS Score visualization
+- Resume vs Job Description Matching
+- Save previous analyses
+- Email downloadable reports
+- Authentication
+- Deployment to production
+
+---
+
+# 🏗️ Architecture
+
+```text
+                React Frontend
+                       │
+                       ▼
+               Resume Upload Form
+                       │
+                       ▼
+                n8n Webhook API
+                       │
+                       ▼
+              Extract PDF Text
+                       │
+                       ▼
+             Google Gemini AI
+                       │
+                       ▼
+            Structured JSON Response
+                       │
+                       ▼
+               React Results Page
+```
+
+---
+
+# 🛠 Tech Stack
+
+## Frontend
 - React
 - Vite
 - CSS
 
-### Backend
+## Backend
 - n8n
 - Google Gemini
+- Webhooks
 - Extract from File Node
-- Webhook API
+
+## AI
+- Google Gemini 2.5
 
 ---
 
-## 📂 Project Structure
+# 📂 Project Structure
 
 ```
-AI_Resume_Analyzer/
+AI_Resume_Analyzer
 │
-├── frontend/
-│   ├── src/
-│   ├── public/
+├── frontend
+│   ├── public
+│   ├── src
+│   │   ├── components
+│   │   ├── assets
+│   │   └── App.jsx
+│   │
 │   ├── package.json
 │   └── vite.config.js
+│
+├── workflow
+│   └── (n8n workflow export)
 │
 └── README.md
 ```
 
 ---
 
-## 🏗️ Current Progress
+# 🚀 Current Progress
 
-### ✅ Completed
-- React frontend setup
-- Resume upload form
-- PDF upload support
-- n8n webhook integration
+## ✅ Completed
+
+- React project setup
+- Resume upload interface
+- React Hooks implementation
+- PDF upload
+- n8n Webhook integration
 - PDF text extraction
 - Google Gemini integration
-- Structured AI prompt
-- JSON response parsing
+- Prompt engineering
+- Structured JSON generation
+- AI analysis pipeline
 
-### 🚧 In Progress
-- Returning AI response to React
+## 🚧 In Progress
+
+- Returning AI response to frontend
 - ATS dashboard UI
-
-### 🔜 Planned Features
-- Resume vs Job Description matching
-- Database storage
-- Email reports
-- Authentication
-- Deployment
-- Analytics Dashboard
 
 ---
 
-## 📸 Screenshots
+# 📸 Screenshots
 
 Coming soon.
 
 ---
 
-## 📅 Development Roadmap
+# 🗺️ Development Roadmap
 
-- [x] Phase 1 – Resume Upload
-- [x] Phase 2 – PDF Extraction
-- [x] Phase 3 – Gemini Integration
-- [ ] Phase 4 – Display AI Results
-- [ ] Phase 5 – Deployment
+## Phase 1
+- [x] React Frontend
+- [x] Resume Upload
+- [x] PDF Extraction
+
+## Phase 2
+- [x] Gemini Integration
+- [x] Structured JSON Output
+- [ ] Display AI Analysis
+
+## Phase 3
+- [ ] Resume vs Job Description Matching
+- [ ] Save Reports
+- [ ] Email Reports
+- [ ] Deployment
 
 ---
 
-## 👨‍💻 Author
+# 💻 Running Locally
 
-Karina Pandav
+## Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+## Backend
+
+Run the n8n workflow locally and configure:
+
+- Google Gemini credentials
+- Webhook URL
+
+---
+
+# 📈 Future Improvements
+
+- Drag & Drop Upload
+- Authentication
+- Dashboard
+- History
+- Multi-language support
+- Export PDF Report
+- Resume Scoring Analytics
+
+---
+
+# 👨‍💻 Author
+
+**Karina Pandav*
+
+B.Tech (AI & Data Science)
+
+Building AI-powered applications with React, n8n, and LLMs.
+
+---
+
+## ⭐ If you found this project interesting, consider giving it a star.
