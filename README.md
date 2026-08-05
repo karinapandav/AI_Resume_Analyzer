@@ -10,21 +10,17 @@ Users upload a PDF resume, specify their desired role, and receive an ATS-style 
 
 ## ✨ Features
 
-### Current
-- Upload resume in PDF format
-- Enter target job role
-- Extract text from PDF using n8n
-- AI-powered resume analysis using Google Gemini
-- Structured JSON output
-- Modern React frontend
-
-### Planned
-- ATS Score visualization
-- Resume vs Job Description Matching
-- Save previous analyses
-- Email downloadable reports
-- Authentication
-- Deployment to production
+- Upload resumes in PDF format
+- Enter a target job role
+- Extract text from resumes using n8n
+- AI-powered ATS-style resume analysis
+- Professional summary generation
+- ATS compatibility score
+- Skills detection
+- Strengths & weaknesses analysis
+- Missing skills identification
+- Personalized resume improvement suggestions
+- Responsive React UI
 
 ---
 
@@ -68,7 +64,7 @@ Users upload a PDF resume, specify their desired role, and receive an ATS-style 
 - Extract from File Node
 
 ## AI
-- Google Gemini 2.5
+- Google Gemini LLM
 
 ---
 
@@ -95,25 +91,33 @@ AI_Resume_Analyzer
 
 ---
 
-# 🚀 Current Progress
+## 🚀 Current Progress
 
-## ✅ Completed
+### ✅ Completed
 
-- React project setup
+- React frontend
 - Resume upload interface
-- React Hooks implementation
-- PDF upload
-- n8n Webhook integration
-- PDF text extraction
+- PDF extraction
+- n8n webhook integration
 - Google Gemini integration
 - Prompt engineering
-- Structured JSON generation
-- AI analysis pipeline
+- Structured JSON output
+- ATS score generation
+- Professional summary
+- Skills detection
+- Strength analysis
+- Weakness analysis
+- Missing skills detection
+- Resume improvement suggestions
+- Responsive dashboard UI
 
-## 🚧 In Progress
+### 🚧 Planned
 
-- Returning AI response to frontend
-- ATS dashboard UI
+- Resume vs Job Description Matching
+- Download analysis as PDF
+- User authentication
+- Resume history
+- Production deployment
 
 ---
 
@@ -162,15 +166,16 @@ Run the n8n workflow locally and configure:
 
 ---
 
-# 📈 Future Improvements
+## 📈 Future Improvements
 
-- Drag & Drop Upload
+- Job description matching
+- Export analysis as PDF
 - Authentication
-- Dashboard
-- History
-- Multi-language support
-- Export PDF Report
-- Resume Scoring Analytics
+- Resume history dashboard
+- Dark mode
+- Drag-and-drop upload
+- Multiple AI model support
+- Multi-language resume analysis
 
 ---
 
