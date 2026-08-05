@@ -181,7 +181,7 @@ Run the n8n workflow locally and configure:
 
 # 👨‍💻 Author
 
-**Karina Pandav*
+**Karina Pandav**
 
 B.Tech (AI & Data Science)
 
