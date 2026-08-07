@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: ai-resume-analyzer-n8n
+    runtime: docker
+    plan: free
+
+    dockerfilePath: ./Dockerfile
+
+    envVars:
+      - key: N8N_HOST
+        value: 0.0.0.0
+
+      - key: N8N_PORT
+        value: 10000
+
+      - key: WEBHOOK_URL
+        sync: false
+
+      - key: N8N_SECURE_COOKIE
+        value: "false"
+
+      - key: GENERIC_TIMEZONE
+        value: Asia/Kolkata
+
+    disk:
+      name: n8n-data
+      mountPath: /home/node/.n8n
+      sizeGB: 1
