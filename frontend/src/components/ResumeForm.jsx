@@ -20,7 +20,7 @@ export default function ResumeForm() {
     fd.append("targetRole",targetRole);
     fd.append("resume",resume);
     try{
-      const res=await fetch("http://localhost:5000/analyze-resume",{
+      const res=await fetch("https://ai-resume-analyzer-api-9igr.onrender.com/analyze-resume",{
         method:"POST",
         body:fd
       });
