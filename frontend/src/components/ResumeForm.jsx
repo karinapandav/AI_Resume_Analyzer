@@ -20,7 +20,7 @@ export default function ResumeForm() {
     fd.append("targetRole",targetRole);
     fd.append("resume",resume);
     try{
-      const res=await fetch("http://localhost:5678/webhook/analyze-resume",{
+      const res=await fetch("http://localhost:5000/analyze-resume",{
         method:"POST",
         body:fd
       });
