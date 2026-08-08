@@ -1,192 +1,267 @@
-# 🤖 AI Resume Analyzer
+🤖 AI Resume Analyzer
 
-An AI-powered Resume Analyzer built with **React**, **n8n**, and **Google Gemini** that helps job seekers evaluate their resumes against a target job role.
+An AI-powered Resume Analyzer built with React, Express, Node.js, PDFparsing, OpenRouter, and Google Gemini/n8n during prototyping.
 
-Users upload a PDF resume, specify their desired role, and receive an ATS-style analysis including strengths, weaknesses, missing skills, and actionable improvement suggestions.
+Users upload a PDF resume, specify a target job role, and receive anATS-style analysis including an ATS score, professional summary,detected skills, strengths, weaknesses, missing skills, and actionableimprovement suggestions.
 
-> 🚧 This project is currently under active development.
+🚀 The application is deployed and usable online.
 
----
+🌐 Live Demo
 
-## ✨ Features
+Frontend: https://frontend-neon-six-93.vercel.app
 
-- Upload resumes in PDF format
-- Enter a target job role
-- Extract text from resumes using n8n
-- AI-powered ATS-style resume analysis
-- Professional summary generation
-- ATS compatibility score
-- Skills detection
-- Strengths & weaknesses analysis
-- Missing skills identification
-- Personalized resume improvement suggestions
-- Responsive React UI
+Backend: https://ai-resume-analyzer-api-9igr.onrender.com
 
----
+✨ Features
 
-# 🏗️ Architecture
+PDF resume upload
 
-```text
-                React Frontend
-                       │
-                       ▼
-               Resume Upload Form
-                       │
-                       ▼
-                n8n Webhook API
-                       │
-                       ▼
-              Extract PDF Text
-                       │
-                       ▼
-             Google Gemini AI
-                       │
-                       ▼
-            Structured JSON Response
-                       │
-                       ▼
-               React Results Page
-```
+Target job-role input
 
----
+PDF text extraction
 
-# 🛠 Tech Stack
+ATS-style AI analysis
 
-## Frontend
-- React
-- Vite
-- CSS
+ATS score from 0--100
 
-## Backend
-- n8n
-- Google Gemini
-- Webhooks
-- Extract from File Node
+Professional summary
 
-## AI
-- Google Gemini LLM
+Skills detected
 
----
+Strengths and weaknesses
 
-# 📂 Project Structure
+Missing skills for the target role
 
-```
-AI_Resume_Analyzer
+Resume improvement suggestions
+
+Responsive React UI
+
+Production REST API
+
+Free-model AI inference through OpenRouter
+
+🏗️ Production Architecture
+
+React Frontend (Vercel)
+        │
+        │ POST /analyze-resume
+        ▼
+Express API (Render)
+        │
+        ├── Multer → receives PDF
+        │
+        ├── pdf-parse → extracts text
+        │
+        └── OpenRouter API
+                 │
+                 ▼
+          Free LLM Model
+                 │
+                 ▼
+          Structured JSON
+                 │
+                 ▼
+        React Results Dashboard
+
+🧪 Original n8n Prototype
+
+The project was initially prototyped using n8n:
+
+React
+  ↓
+n8n Webhook
+  ↓
+Extract PDF Text
+  ↓
+Google Gemini
+  ↓
+Structured JSON
+  ↓
+React
+
+The n8n workflow is preserved in:
+
+workflow/AI_resume_analyzer.json
+
+The production backend was later migrated to Express because the freeRender environment was not a good fit for running the full n8n server.The migration preserved the same core pipeline and AI output structure.
+
+🛠️ Tech Stack
+
+Frontend
+
+React
+
+Vite
+
+CSS
+
+Fetch API
+
+Backend
+
+Node.js
+
+Express
+
+Multer
+
+pdf-parse
+
+CORS
+
+dotenv
+
+AI
+
+OpenRouter API
+
+Free LLM model
+
+Prompt engineering
+
+Structured JSON output
+
+Automation / Prototype
+
+n8n
+
+Webhooks
+
+Extract From File
+
+Google Gemini
+
+Deployment
+
+Vercel --- frontend
+
+Render --- backend
+
+GitHub --- source control
+
+📂 Project Structure
+
+AI_Resume_Analyzer/
 │
-├── frontend
-│   ├── public
-│   ├── src
-│   │   ├── components
-│   │   ├── assets
-│   │   └── App.jsx
-│   │
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── Header.jsx
+│   │   │   ├── Header.css
+│   │   │   ├── ResumeForm.jsx
+│   │   │   └── ResumeForm.css
+│   │   ├── App.jsx
+│   │   ├── App.css
+│   │   └── index.css
+│   └── package.json
+│
+├── backend/
+│   ├── server.js
 │   ├── package.json
-│   └── vite.config.js
+│   ├── package-lock.json
+│   └── .gitignore
 │
-├── workflow
-│   └── (n8n workflow export)
+├── workflow/
+│   └── AI_resume_analyzer.json
 │
-└── README.md
-```
+├── screenshots/
+│
+├── README.md
+└── LICENSE
 
----
+🔌 API
 
-## 🚀 Current Progress
+GET /
 
-### ✅ Completed
+Health check.
 
-- React frontend
-- Resume upload interface
-- PDF extraction
-- n8n webhook integration
-- Google Gemini integration
-- Prompt engineering
-- Structured JSON output
-- ATS score generation
-- Professional summary
-- Skills detection
-- Strength analysis
-- Weakness analysis
-- Missing skills detection
-- Resume improvement suggestions
-- Responsive dashboard UI
+Example response:
 
-### 🚧 Planned
+{
+  "status": "online",
+  "message": "AI Resume Analyzer API is running"
+}
 
-- Resume vs Job Description Matching
-- Download analysis as PDF
-- User authentication
-- Resume history
-- Production deployment
+POST /analyze-resume
 
----
+Accepts multipart/form-data.
 
-# 📸 Screenshots
+Fields:
 
-Coming soon.
+fullName
 
----
+targetRole
 
-# 🗺️ Development Roadmap
+resume --- PDF file
 
-## Phase 1
-- [x] React Frontend
-- [x] Resume Upload
-- [x] PDF Extraction
+The backend:
 
-## Phase 2
-- [x] Gemini Integration
-- [x] Structured JSON Output
-- [ ] Display AI Analysis
+Validates the uploaded file.
 
-## Phase 3
-- [ ] Resume vs Job Description Matching
-- [ ] Save Reports
-- [ ] Email Reports
-- [ ] Deployment
+Extracts text from the PDF.
 
----
+Builds the ATS analysis prompt.
 
-# 💻 Running Locally
+Sends the prompt to OpenRouter.
 
-## Frontend
+Parses the AI response.
 
-```bash
+Returns the analysis as JSON.
+
+🔐 Environment Variables
+
+Create backend/.env locally:
+
+OPENROUTER_API_KEY=your_key_here
+OPENROUTER_MODEL=openai/gpt-oss-20b:free
+PORT=5000
+APP_URL=http://localhost:5173
+
+Never commit .env to GitHub.
+
+For Render, configure the secrets in the Render dashboard instead ofstoring them in the repository.
+
+💻 Run Locally
+
+Frontend
+
 cd frontend
 npm install
 npm run dev
-```
 
-## Backend
+Backend
 
-Run the n8n workflow locally and configure:
+cd backend
+npm install
+node server.js
 
-- Google Gemini credentials
-- Webhook URL
+The local API runs on:
 
----
+http://localhost:5000
 
-## 📈 Future Improvements
+🧠 AI Output
 
-- Job description matching
-- Export analysis as PDF
-- Authentication
-- Resume history dashboard
-- Dark mode
-- Drag-and-drop upload
-- Multiple AI model support
-- Multi-language resume analysis
+The backend asks the model to return:
 
----
+{
+  "professional_summary": "",
+  "ats_score": 0,
+  "skills_detected": [],
+  "strengths": [],
+  "weaknesses": [],
+  "missing_skills": [],
+  "resume_improvement_suggestions": []
+}
 
-# 👨‍💻 Author
+👨‍💻 Author
 
-**Karina Pandav**
+Karina Pandav
 
-B.Tech (AI & Data Science)
+B.Tech --- Artificial Intelligence & Data Science
 
-Building AI-powered applications with React, n8n, and LLMs.
+Building AI-powered applications with React, Node.js, automationworkflows, and LLM APIs.
 
----
+⭐ Project
 
-## ⭐ If you found this project interesting, consider giving it a star.
+If you found this project interesting, consider giving it a star.
