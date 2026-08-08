@@ -8,7 +8,7 @@ Users upload a PDF resume, specify a target job role, and receive anATS-style an
 
 🌐 Live Demo
 
-Frontend: https://ai-resume-analyzer-6ljiio91k-karina-pandav.vercel.app/
+Frontend: https://frontend-neon-six-93.vercel.app/
 
 Backend: https://ai-resume-analyzer-api-9igr.onrender.com
 
