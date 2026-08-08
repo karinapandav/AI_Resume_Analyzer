@@ -128,16 +128,19 @@ The ats_score must be an integer between 0 and 100.
           "X-Title": "AI Resume Analyzer",
         },
         body: JSON.stringify({
-          model:
+        model:
             process.env.OPENROUTER_MODEL ||
-            "openrouter/free",
-          messages: [
+            "openai/gpt-oss-20b:free",
+        messages: [
             {
-              role: "user",
-              content: prompt,
+            role: "user",
+            content: prompt,
             },
-          ],
-          temperature: 0.2,
+        ],
+        temperature: 0.2,
+        response_format: {
+            type: "json_object",
+        },
         }),
       }
     );
